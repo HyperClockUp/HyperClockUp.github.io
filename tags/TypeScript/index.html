@@ -6,18 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://chengfeixiang.cn">
-  <title>Cheng&#39;s Blog</title>
+  <title>Tag: TypeScript | Cheng&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-    
-    <!-- <meta name="keywords" content="blog">
-    <meta name="description" content="a blog for chengfx"> -->
   
   <meta name="description" content="a blog for chengfx">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cheng&#39;s Blog">
-<meta property="og:url" content="http://chengfeixiang.cn/index.html">
+<meta property="og:url" content="http://chengfeixiang.cn/tags/TypeScript/index.html">
 <meta property="og:site_name" content="Cheng&#39;s Blog">
 <meta property="og:description" content="a blog for chengfx">
 <meta property="og:locale" content="zh_CN">
@@ -205,50 +201,40 @@
           </div>
           <div id="js-content" class="content-ll">
             
-
   
-    <article id="post-TypeScript工具类实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-  
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2022/03/15/TypeScript%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+        <time datetime="2022-03-15T06:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-15</time>
+</a>
+
+        </div>
+    	 
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2022/03/15/TypeScript%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%AE%9E%E7%8E%B0/">TypeScript工具类实现</a>
+	  <a class="archive-article-title" href="/2022/03/15/TypeScript%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%AE%9E%E7%8E%B0/">TypeScript工具类实现</a>
 	
     </h1>
   
 
 
-  
-  
-<a href="/2022/03/15/TypeScript%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
-        <time datetime="2022-03-15T06:58:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="TypeScript-类型实现"><a href="#TypeScript-类型实现" class="headerlink" title="TypeScript 类型实现"></a>TypeScript 类型实现</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @TestExample 测试类型</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">TypeDemo</span> &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="built_in">number</span>;</span><br><span class="line">  <span class="attr">b</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="attr">demo</span>: <span class="title class_">TypeDemo</span> = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="string">&#x27;2&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Realize 类型实现</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">MyPartial</span>&lt;T, K <span class="keyword">extends</span> keyof T&gt; = &#123;</span><br><span class="line">  [P <span class="keyword">in</span> K]?: T[P];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Test 类型测试</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">partialTest</span>: <span class="title class_">MyPartial</span>&lt;<span class="title class_">TypeDemo</span>, <span class="string">&#x27;a&#x27;</span>&gt; = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Realize 类型实现</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">MyRecord</span>&lt;T, K <span class="keyword">extends</span> keyof <span class="built_in">any</span>&gt; = &#123;</span><br><span class="line">  [P <span class="keyword">in</span> K]: T;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Test 类型测试</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">recordTest</span>: <span class="title class_">MyRecord</span>&lt;<span class="title class_">TypeDemo</span>, <span class="built_in">string</span>&gt; = &#123;</span><br><span class="line">  <span class="attr">a</span>: demo,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Realize 类型实现</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">MyExclude</span>&lt;T, U&gt; = T <span class="keyword">extends</span> U ? <span class="built_in">never</span> : T;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Test 类型测试</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">CombineTypeA</span> = <span class="string">&#x27;a&#x27;</span> | <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">CombineTypeB</span> = <span class="string">&#x27;a&#x27;</span> | <span class="string">&#x27;b&#x27;</span> | <span class="string">&#x27;c&#x27;</span> | <span class="string">&#x27;d&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @result &#x27;c&#x27;|&#x27;d&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">excludeTest</span>: <span class="title class_">MyExclude</span>&lt;<span class="title class_">CombineTypeB</span>, <span class="title class_">CombineTypeA</span>&gt; = <span class="string">&#x27;c&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Realize 类型实现</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">MyExtract</span>&lt;T, K&gt; = T <span class="keyword">extends</span> K ? T : <span class="built_in">never</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Test 类型测试</span></span><br><span class="line"><span class="comment">// @result &#x27;a&#x27;|&#x27;b&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">extractTest</span>: <span class="title class_">MyExtract</span>&lt;<span class="title class_">CombineTypeA</span>, <span class="title class_">CombineTypeB</span>&gt; = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Realize 类型实现</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">MyOmit</span>&lt;T, K <span class="keyword">extends</span> keyof T&gt; = &#123;</span><br><span class="line">  [P <span class="keyword">in</span> <span class="title class_">Exclude</span>&lt;keyof T, K&gt;]: T[P];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">MyOmit2</span>&lt;T, K <span class="keyword">extends</span> keyof T&gt; = <span class="title class_">Pick</span>&lt;T, <span class="title class_">Exclude</span>&lt;keyof T, K&gt;&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Test 类型测试</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">omitTest</span>: <span class="title class_">MyOmit</span>&lt;<span class="title class_">TypeDemo</span>, <span class="string">&#x27;a&#x27;</span>&gt; = &#123;</span><br><span class="line">  <span class="attr">b</span>: <span class="string">&#x27;2&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">omitTest2</span>: <span class="title class_">MyOmit2</span>&lt;<span class="title class_">TypeDemo</span>, <span class="string">&#x27;a&#x27;</span>&gt; = &#123;</span><br><span class="line">  <span class="attr">b</span>: <span class="string">&#x27;2&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Realize 类型实现</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">MyParameters</span>&lt;T <span class="keyword">extends</span> (...<span class="attr">args</span>: <span class="built_in">any</span>) =&gt; <span class="built_in">any</span>&gt; = T <span class="keyword">extends</span> (</span><br><span class="line">  ...<span class="attr">args</span>: infer P</span><br><span class="line">) =&gt; <span class="built_in">any</span></span><br><span class="line">  ? P</span><br><span class="line">  : <span class="built_in">never</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Test 类型测试</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">parametersTest</span>: <span class="title class_">MyParameters</span>&lt;<span class="function">(<span class="params">a: <span class="built_in">number</span>, b: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">void</span>&gt; = [<span class="number">1</span>, <span class="string">&#x27;2&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Realize 类型实现</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">MyReturnType</span>&lt;T <span class="keyword">extends</span> (...<span class="attr">args</span>: <span class="built_in">any</span>) =&gt; <span class="built_in">any</span>&gt; = T <span class="keyword">extends</span> (</span><br><span class="line">  ...<span class="attr">args</span>: <span class="built_in">any</span></span><br><span class="line">) =&gt; infer R</span><br><span class="line">  ? R</span><br><span class="line">  : <span class="built_in">never</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Test 类型测试</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">returnTypeTest</span>: <span class="title class_">MyReturnType</span>&lt;<span class="function">(<span class="params">a: <span class="built_in">number</span>, b: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">number</span>&gt; = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// @Realize 类型实现</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">MyConstructorParameters</span>&lt;T <span class="keyword">extends</span> <span class="keyword">abstract</span> <span class="keyword">new</span> (...<span class="attr">args</span>: <span class="built_in">any</span>) =&gt; <span class="built_in">any</span>&gt; = T <span class="keyword">extends</span> <span class="keyword">abstract</span> <span class="keyword">new</span> (...<span class="attr">args</span>: infer P) =&gt; <span class="built_in">any</span> ? P : <span class="built_in">never</span>;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -260,416 +246,19 @@
 		</ul>
 	</div>
 
-    
+          
 
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/15/TypeScript%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%AE%9E%E7%8E%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CSS实现粘连效果" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/14/CSS%E5%AE%9E%E7%8E%B0%E7%B2%98%E8%BF%9E%E6%95%88%E6%9E%9C/">CSS实现粘连效果</a>
-	
-    </h1>
+    </div></section>
   
 
-
-  
-  
-<a href="/2022/03/14/CSS%E5%AE%9E%E7%8E%B0%E7%B2%98%E8%BF%9E%E6%95%88%E6%9E%9C/" class="archive-article-date">
-        <time datetime="2022-03-14T08:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
-</a>
-
-  
-  
     
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <ul>
-<li><a target="_blank" rel="noopener" href="https://confluence.inner.youdao.com/pages/viewpage.action?pageId=62376545#CSS%E6%8F%AD%E7%A7%98-css%E7%B2%98%E8%BF%9E%E6%95%88%E6%9E%9C">css粘连效果</a><ul>
-<li><a target="_blank" rel="noopener" href="https://confluence.inner.youdao.com/pages/viewpage.action?pageId=62376545#CSS%E6%8F%AD%E7%A7%98-Demo%E5%9C%B0%E5%9D%80">Demo地址</a></li>
-<li><a target="_blank" rel="noopener" href="https://confluence.inner.youdao.com/pages/viewpage.action?pageId=62376545#CSS%E6%8F%AD%E7%A7%98-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">实现原理</a></li>
-</ul>
-</li>
-</ul>
-<h4 id="css粘连效果"><a href="#css粘连效果" class="headerlink" title="css粘连效果"></a>css粘连效果</h4><p>可以用来实现消息气泡的拖动，css仿真火焰等一系列效果</p>
-<p><img src="https://s2.loli.net/2022/03/14/4ioalnGkIRjMsb9.gif" alt="filtermix"></p>
-<p>拆解一下知识点，最主要的其实是用到了 <code>filter: contrast()</code> 以及 <code>filter: blur()</code> 这两个滤镜，可以很好的实现这种融合效果。</p>
-<p>单独将两个滤镜拿出来，它们的作用分别是：</p>
-<ol>
-<li><code>filter: blur()</code>： 给图像设置高斯模糊效果。</li>
-<li><code>filter: contrast()</code>： 调整图像的对比度。</li>
-</ol>
-<h5 id="Demo地址"><a href="#Demo地址" class="headerlink" title="Demo地址"></a>Demo地址</h5><p><a target="_blank" rel="noopener" href="https://codepen.io/Chokcoco/pen/QqWBqV">codepen地址</a></p>
-<h5 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h5><p>将两个需要粘连效果的元素添加高斯模糊 filter:blur() ，再给容器添加一定的对比度，重点在于<strong>一定要给父容器设置背景颜色。</strong></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/14/CSS%E5%AE%9E%E7%8E%B0%E7%B2%98%E8%BF%9E%E6%95%88%E6%9E%9C/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/11/Node/">Electron第三方功能模块开发调研</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/11/Node/" class="archive-article-date">
-        <time datetime="2022-03-11T06:08:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>业务场景：需要检测当前系统默认麦克风的静音状态，并在合适的时候帮用户解除静音。</p>
-<p>技术调研：首先考虑到当前技术框架为Electron，即技术范围存在Node+Browser的限制。Browser层很显然不具备操作系统底层API的权限，那么第一个想法就是查一下Node官方的文档，看看是否存在相关的接口可供实现。</p>
-<p>查询了官方文档以及Google之后发现好像并没有原生的Node接口支持该类型操作。这个时候就需要我们借助其他方案来实现：</p>
-<p>命令行<br>其他软件<br>借助Node的特性，调用系统层面API实现功能</p>
-<p>1、命令行实现</p>
-<p>查询一番资料后得知，windows下原生并没有相关的命令支持直接操作系统音量，但有相关的软件可以做到命令行调用，如nircmd,</p>
-<p>Increase the system volume by 2000 units (out of 65535)    nircmd.exe changesysvolume 2000<br>Decrease the system volume by 5000 units (out of 65535)    nircmd.exe changesysvolume -5000<br>Set the volume to the highest value    nircmd.exe setsysvolume 65535<br>Mute the system volume    nircmd.exe mutesysvolume 1<br>Unmute the system volume    nircmd.exe mutesysvolume 0<br>Switch the system volume between the mute and normal state.    nircmd.exe mutesysvolume 2</p>
-<p>同时还支持更多系统层级的操作，因此可以作为我们的备用方案。</p>
-<p>在同网站搜寻后发现，还有另一个软件也能实现相关功能，并且功能更纯粹SoundVolumeView,但比较后发现，由于SoundVolumeView支持图形化界面，因此大小稍大（186KB），而功能更多的nircmd仅支持命令行所以大小更合适（117KB），因此优先考虑nircmd。</p>
-<p>在Unix系统下，则或多或少支持原生的命令行。</p>
-<p>MacOS：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#Max volume</span><br><span class="line">sudo osascript -e &quot;set Volume 10&quot;</span><br><span class="line"></span><br><span class="line"># Mute</span><br><span class="line">sudo osascript -e &quot;set Volume 0&quot;</span><br><span class="line"></span><br><span class="line"># 50% volume</span><br><span class="line">sudo osascript -e &quot;set Volume 5&quot;</span><br></pre></td></tr></table></figure>
-<p>Linux：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># increase sound level</span><br><span class="line">amixer set Master 8%+</span><br><span class="line"></span><br><span class="line"># decrease sound level</span><br><span class="line">amixer set Master 8%-</span><br><span class="line"># set to specific sound level</span><br><span class="line">amixer set Master 50%</span><br></pre></td></tr></table></figure>
-
-
-
-<p>2、其他软件</p>
-<p>即上述nircmd，SoundVolumeView，或者借助unix系统下的各种软件包实现，由于实现方式均在外部，低维护性，所以均作为备用方案。</p>
-<p>3、NodeJS实现</p>
-<p>NodeJS原生提供了对C&#x2F;C++语言的支持，因此可以通过多种方式编写C&#x2F;C++的插件实现底层功能。同时，依据细节不同，在使用C&#x2F;C++实现时也分为以下几种方案：</p>
-<p>NAN，<br>N-API<br>ffi</p>
-<p>一个node插件是形如*.node的二进制文件，当我们使用dumpbin尝试查看它的内容时，我们可以看到</p>
-<p>在FileType一栏写着DLL类型，那么很明显，所谓的*.node文件只是dll文件的别名，linux下使用file命令也能证明这一点</p>
-<p>因此我们可以通过自己编写dll的方式来编写自己的node插件。</p>
-<p>前置知识点：node-gyp(gyp)，</p>
-<p>前置工具：<strong>Visual Studio (windows)</strong>, <strong>XCode(Mac)</strong>, <strong>Makefile(Linux)</strong></p>
-<p>Google使用过很多处理平台无关的项目构建系统，比如Scons，CMake。在实际使用中这些并不能满足需求。开发复杂的应用程序时，在Mac上Xcode更加适合，而Windows上Visual Studio更是无二之选。<br>gyp是为Chromium项目创建的项目生成工具，可以从平台无关的配置生成平台相关的Visual Studio、Xcode、Makefile的项目文件。这样一来我们就不需要花额外的时间处理每个平台不同的项目配置以及项目之间的依赖关系。</p>
-<p>作者：FreezeSoul<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/36291768/answer/109978115">https://www.zhihu.com/question/36291768/answer/109978115</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<p>1、NAN形式（Native Abstration for Node.js，即原生Node.js抽象接口）</p>
-<p>用于兼容各个nodejs版本，但是nodejs版本改了，依然要重新编译</p>
-<p>2、N-API</p>
-<p>N-API是用于构建本机插件的API</p>
-<p>当用到更基础的参数，如dllmain入口时</p>
-<p><a target="_blank" rel="noopener" href="https://ticehurst.com/2019/07/10/minimal-nodejs-part-2.html">https://ticehurst.com/2019/07/10/minimal-nodejs-part-2.html</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/11/Node/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-post-test-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/03/post-test-1/">Cheng&#39;s Information</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/03/post-test-1/" class="archive-article-date">
-        <time datetime="2022-03-03T03:02:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-03</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    有东西被加密了, 请输入密码查看.
-    
-    <a class="article-more-a" href="/2022/03/03/post-test-1/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/03/post-test-1/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/02/hello-world/">Hello World</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/02/hello-world/" class="archive-article-date">
-        <time datetime="2022-03-02T10:59:54.988Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-02</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/02/hello-world/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -709,10 +298,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
