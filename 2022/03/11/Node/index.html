@@ -10,18 +10,20 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="业务场景：需要检测当前系统默认麦克风的静音状态，并在合适的时候帮用户解除静音。 技术调研：首先考虑到当前技术框架为Electron，即技术范围存在Node+Browser的限制。Browser层很显然不具备操作系统底层API的权限，那么第一个想法就是查一下Node官方的文档，看看是否存在相关的接口可供实现。 查询了官方文档以及Google之后发现好像并没有原生的Node接口支持该类型操作。这个时候">
+  <meta name="description" content="业务场景：需要检测当前系统默认麦克风的静音状态，并在合适的时候帮用户解除静音。  技术调研：首先考虑到当前技术框架为Electron，即技术范围存在Node+Browser的限制。Browser层很显然不具备操作系统底层API的权限，那么第一个想法就是查一下Node官方的文档，看看是否存在相关的接口可供实现。 查询了官方文档以及Google之后发现好像并没有原生的Node接口支持该类型操作。这个时">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Electron第三方功能模块开发调研">
 <meta property="og:url" content="https://blog.chengfeixiang.cn/2022/03/11/Node/index.html">
 <meta property="og:site_name" content="Cheng&#39;s Blog">
-<meta property="og:description" content="业务场景：需要检测当前系统默认麦克风的静音状态，并在合适的时候帮用户解除静音。 技术调研：首先考虑到当前技术框架为Electron，即技术范围存在Node+Browser的限制。Browser层很显然不具备操作系统底层API的权限，那么第一个想法就是查一下Node官方的文档，看看是否存在相关的接口可供实现。 查询了官方文档以及Google之后发现好像并没有原生的Node接口支持该类型操作。这个时候">
+<meta property="og:description" content="业务场景：需要检测当前系统默认麦克风的静音状态，并在合适的时候帮用户解除静音。  技术调研：首先考虑到当前技术框架为Electron，即技术范围存在Node+Browser的限制。Browser层很显然不具备操作系统底层API的权限，那么第一个想法就是查一下Node官方的文档，看看是否存在相关的接口可供实现。 查询了官方文档以及Google之后发现好像并没有原生的Node接口支持该类型操作。这个时">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-11T06:08:22.000Z">
-<meta property="article:modified_time" content="2022-03-11T06:13:17.746Z">
+<meta property="og:image" content="https://blog.chengfeixiang.cn/images/system-volume.png">
+<meta property="article:published_time" content="2022-03-11T06:08:00.000Z">
+<meta property="article:modified_time" content="2022-03-19T06:38:00.414Z">
 <meta property="article:author" content="chengfx">
-<meta property="article:tag" content="blog">
+<meta property="article:tag" content="Electron">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.chengfeixiang.cn/images/system-volume.png">
   
     <link rel="alternative" href="/atom.xml" title="Cheng&#39;s Blog" type="application/atom+xml">
   
@@ -222,7 +224,7 @@
         </span>
 
 <a href="/2022/03/11/Node/" class="archive-article-date">
-        <time datetime="2022-03-11T06:08:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
+        <time datetime="2022-03-11T06:08:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
 </a>
 
   
@@ -235,7 +237,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">997字</span>
+      <span class="post-count">1k字</span>
     </span>
   </span>
 
@@ -256,19 +258,22 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>业务场景：需要检测当前系统默认麦克风的静音状态，并在合适的时候帮用户解除静音。</p>
+<p><img src="/images/system-volume.png" alt="upload successful"></p>
 <p>技术调研：首先考虑到当前技术框架为Electron，即技术范围存在Node+Browser的限制。Browser层很显然不具备操作系统底层API的权限，那么第一个想法就是查一下Node官方的文档，看看是否存在相关的接口可供实现。</p>
 <p>查询了官方文档以及Google之后发现好像并没有原生的Node接口支持该类型操作。这个时候就需要我们借助其他方案来实现：</p>
 <p>命令行<br>其他软件<br>借助Node的特性，调用系统层面API实现功能</p>
 <p>1、命令行实现</p>
 <p>查询一番资料后得知，windows下原生并没有相关的命令支持直接操作系统音量，但有相关的软件可以做到命令行调用，如nircmd,</p>
-<p>Increase the system volume by 2000 units (out of 65535)    nircmd.exe changesysvolume 2000<br>Decrease the system volume by 5000 units (out of 65535)    nircmd.exe changesysvolume -5000<br>Set the volume to the highest value    nircmd.exe setsysvolume 65535<br>Mute the system volume    nircmd.exe mutesysvolume 1<br>Unmute the system volume    nircmd.exe mutesysvolume 0<br>Switch the system volume between the mute and normal state.    nircmd.exe mutesysvolume 2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Increase the system volume by 2000 units (out of 65535)</span></span><br><span class="line">nircmd.exe changesysvolume 2000</span><br><span class="line"><span class="comment"># Decrease the system volume by 5000 units (out of 65535)</span></span><br><span class="line">nircmd.exe changesysvolume -5000</span><br><span class="line"><span class="comment"># Set the volume to the highest value</span></span><br><span class="line">nircmd.exe setsysvolume 65535</span><br><span class="line"><span class="comment"># Mute the system volume</span></span><br><span class="line">nircmd.exe mutesysvolume 1</span><br><span class="line"><span class="comment"># Unmute the system volume</span></span><br><span class="line">nircmd.exe mutesysvolume 0</span><br><span class="line"><span class="comment"># Switch the system volume between the mute and normal state.</span></span><br><span class="line">nircmd.exe mutesysvolume 2</span><br></pre></td></tr></table></figure>
+
+
 <p>同时还支持更多系统层级的操作，因此可以作为我们的备用方案。</p>
 <p>在同网站搜寻后发现，还有另一个软件也能实现相关功能，并且功能更纯粹SoundVolumeView,但比较后发现，由于SoundVolumeView支持图形化界面，因此大小稍大（186KB），而功能更多的nircmd仅支持命令行所以大小更合适（117KB），因此优先考虑nircmd。</p>
 <p>在Unix系统下，则或多或少支持原生的命令行。</p>
 <p>MacOS：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#Max volume</span><br><span class="line">sudo osascript -e &quot;set Volume 10&quot;</span><br><span class="line"></span><br><span class="line"># Mute</span><br><span class="line">sudo osascript -e &quot;set Volume 0&quot;</span><br><span class="line"></span><br><span class="line"># 50% volume</span><br><span class="line">sudo osascript -e &quot;set Volume 5&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Max volume</span></span><br><span class="line">sudo osascript -e <span class="string">&quot;set Volume 10&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Mute</span></span><br><span class="line">sudo osascript -e <span class="string">&quot;set Volume 0&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 50% volume</span></span><br><span class="line">sudo osascript -e <span class="string">&quot;set Volume 5&quot;</span></span><br></pre></td></tr></table></figure>
 <p>Linux：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># increase sound level</span><br><span class="line">amixer set Master 8%+</span><br><span class="line"></span><br><span class="line"># decrease sound level</span><br><span class="line">amixer set Master 8%-</span><br><span class="line"># set to specific sound level</span><br><span class="line">amixer set Master 50%</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># increase sound level</span></span><br><span class="line">amixer <span class="built_in">set</span> Master 8%+</span><br><span class="line"></span><br><span class="line"><span class="comment"># decrease sound level</span></span><br><span class="line">amixer <span class="built_in">set</span> Master 8%-</span><br><span class="line"><span class="comment"># set to specific sound level</span></span><br><span class="line">amixer <span class="built_in">set</span> Master 50%</span><br></pre></td></tr></table></figure>
 
 
 
@@ -276,7 +281,11 @@
 <p>即上述nircmd，SoundVolumeView，或者借助unix系统下的各种软件包实现，由于实现方式均在外部，低维护性，所以均作为备用方案。</p>
 <p>3、NodeJS实现</p>
 <p>NodeJS原生提供了对C&#x2F;C++语言的支持，因此可以通过多种方式编写C&#x2F;C++的插件实现底层功能。同时，依据细节不同，在使用C&#x2F;C++实现时也分为以下几种方案：</p>
-<p>NAN，<br>N-API<br>ffi</p>
+<ul>
+<li><code>NAN</code></li>
+<li><code>N-API</code></li>
+<li><code>ffi</code></li>
+</ul>
 <p>一个node插件是形如*.node的二进制文件，当我们使用dumpbin尝试查看它的内容时，我们可以看到</p>
 <p>在FileType一栏写着DLL类型，那么很明显，所谓的*.node文件只是dll文件的别名，linux下使用file命令也能证明这一点</p>
 <p>因此我们可以通过自己编写dll的方式来编写自己的node插件。</p>
@@ -353,7 +362,29 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Electron</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -472,7 +503,7 @@
   <script>
     <!-- id: "Electron第三方功能模块开发调研" -->
     var gitment = new Gitment({
-      id: "20220311140822",
+      id: "20220311140800",
       owner: 'true',
       repo: 'gitment',
       oauth: {
@@ -615,6 +646,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Electron</a>
               </li>
              
               <li class="article-tag-list-item">
