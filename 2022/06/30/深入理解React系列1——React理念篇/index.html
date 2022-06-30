@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/06/30/c5pEmzsOdibAKBW.png">
 <meta property="og:image" content="https://s2.loli.net/2022/06/30/B1DKLP7z4baSROy.png">
 <meta property="article:published_time" content="2022-06-30T09:43:00.000Z">
-<meta property="article:modified_time" content="2022-06-30T09:44:11.066Z">
+<meta property="article:modified_time" content="2022-06-30T09:46:59.767Z">
 <meta property="article:author" content="chengfx">
 <meta property="article:tag" content="React">
 <meta property="article:tag" content="深入学习React系列">
@@ -268,6 +268,8 @@
 <h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p><em><strong>mountComponent</strong></em>和<em><strong>updateComponent</strong></em>会递归更新子组件，导致持续占用主线程，UI线程和IO线程无法响应，导致页面卡顿</p>
 <h3 id="是否可中断"><a href="#是否可中断" class="headerlink" title="是否可中断"></a>是否可中断</h3><p>v15版本的React的执行过程中，调度器一旦发现需要更新DOM，就通知渲染器去执行DOM更新。</p>
 <p>由于所有的步骤都是数据层和渲染层交替执行同步进行，不存在中间态的数据状态，一旦发生中断，不能恢复现场，同时由于递归进行，中断后再恢复的难度大。</p>
+<span id="more"></span>
+
 <h2 id="新版React-gt-x3D-v16"><a href="#新版React-gt-x3D-v16" class="headerlink" title="新版React (&gt;&#x3D;v16)"></a>新版React (&gt;&#x3D;v16)</h2><h3 id="架构-1"><a href="#架构-1" class="headerlink" title="架构"></a>架构</h3><ul>
 <li><strong>Scheduler（调度器）</strong>—— 调度任务的优先级，高优任务优先进入<strong>Reconciler</strong></li>
 <li>Reconciler（协调器）—— 负责找出变化的组件</li>
